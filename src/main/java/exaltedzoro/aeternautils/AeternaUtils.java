@@ -1,4 +1,4 @@
-package net.exaltedzoro.aeternautils;
+package exaltedzoro.aeternautils;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
