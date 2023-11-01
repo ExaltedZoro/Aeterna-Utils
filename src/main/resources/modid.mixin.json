@@ -3,9 +3,7 @@
   "package": "exaltedzoro.aeternautils.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "modid.refmap.json",
-  "mixins": [
-    "TestMixin"
-  ],
+  "mixins": [],
   "client": [
   ],
   "minVersion": "0.8"
