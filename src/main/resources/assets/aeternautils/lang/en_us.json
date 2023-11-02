@@ -1,3 +1,4 @@
 {
-  "item.aeternautils.eldritch": "Eldritch"
+  "item.aeterna_utils.eldritch": "Eldritch",
+  "block.aeterna_utils.test_block": "Test"
 }
