@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "aeternautils/item/eldritch"
+    "layer0": "aeterna_utils/item/eldritch"
   }
 }
