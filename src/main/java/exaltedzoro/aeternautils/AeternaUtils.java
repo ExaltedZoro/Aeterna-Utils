@@ -2,6 +2,7 @@ package exaltedzoro.aeternautils;
 
 import com.mojang.logging.LogUtils;
 import exaltedzoro.aeternautils.block.ModBlocks;
+import exaltedzoro.aeternautils.block.entity.ModBlockEntities;
 import exaltedzoro.aeternautils.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,6 +28,7 @@ public class AeternaUtils
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
