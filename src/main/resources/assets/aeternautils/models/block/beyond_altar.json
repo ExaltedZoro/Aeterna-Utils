@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "aeterna_utils/block/test_block"
+    "all": "minecraft:block/stone"
   }
 }
