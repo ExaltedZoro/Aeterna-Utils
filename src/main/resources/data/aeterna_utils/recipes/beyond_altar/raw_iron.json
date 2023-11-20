@@ -1,0 +1,14 @@
+{
+  "type": "aeterna_utils:beyond_altar",
+  "output": {
+    "item": "minecraft:raw_iron"
+  },
+  "input": {
+    "item": "minecraft:dirt"
+  },
+  "pedestalsItems": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ]
+}
