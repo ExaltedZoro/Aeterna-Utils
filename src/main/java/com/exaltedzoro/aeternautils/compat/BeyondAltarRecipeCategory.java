@@ -1,9 +1,8 @@
-package exaltedzoro.aeternautils.compat;
+package com.exaltedzoro.aeternautils.compat;
 
-import exaltedzoro.aeternautils.AeternaUtils;
-import exaltedzoro.aeternautils.block.ModBlocks;
-import exaltedzoro.aeternautils.recipe.BeyondAltarRecipe;
-import mezz.jei.api.JeiPlugin;
+import com.exaltedzoro.aeternautils.AeternaUtils;
+import com.exaltedzoro.aeternautils.block.ModBlocks;
+import com.exaltedzoro.aeternautils.recipe.BeyondAltarRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -18,11 +17,14 @@ import net.minecraft.world.item.ItemStack;
 
 public class BeyondAltarRecipeCategory implements IRecipeCategory<BeyondAltarRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(AeternaUtils.MOD_ID, "beyond_altar");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(AeternaUtils.MOD_ID, "textures/gui/beyond_altar_jei_background.png");
 
     private final IDrawable icon;
+    private final IDrawable background;
 
     public BeyondAltarRecipeCategory(IGuiHelper helper) {
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.BEYOND_ALTAR.get()));
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 100, 100);
     }
 
     @Override
@@ -37,7 +39,7 @@ public class BeyondAltarRecipeCategory implements IRecipeCategory<BeyondAltarRec
 
     @Override
     public IDrawable getBackground() {
-        return null;
+        return this.background;
     }
 
     @Override
