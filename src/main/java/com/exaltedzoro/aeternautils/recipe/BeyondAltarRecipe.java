@@ -1,8 +1,8 @@
-package exaltedzoro.aeternautils.recipe;
+package com.exaltedzoro.aeternautils.recipe;
 
+import com.exaltedzoro.aeternautils.AeternaUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import exaltedzoro.aeternautils.AeternaUtils;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -42,12 +42,13 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
             return false;
         }
 
+        boolean matched;
         for (Ingredient pedestalItem : this.pedestalItems) {
             if(pedestalItem == Ingredient.EMPTY) {
                 continue;
             }
 
-            boolean matched = false;
+            matched = false;
             for(int i = 0; i < pedestals.size(); i++) {
                 ItemStack stack = pedestals.get(i);
                 if(pedestalItem.test(stack)) {
