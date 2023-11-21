@@ -1,8 +1,7 @@
-package exaltedzoro.aeternautils.block.entity;
+package com.exaltedzoro.aeternautils.block.entity;
 
-import exaltedzoro.aeternautils.AeternaUtils;
-import exaltedzoro.aeternautils.block.ModBlocks;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import com.exaltedzoro.aeternautils.AeternaUtils;
+import com.exaltedzoro.aeternautils.block.ModBlocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

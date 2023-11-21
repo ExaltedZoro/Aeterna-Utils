@@ -1,7 +1,7 @@
-package exaltedzoro.aeternautils.compat;
+package com.exaltedzoro.aeternautils.compat;
 
-import exaltedzoro.aeternautils.AeternaUtils;
-import exaltedzoro.aeternautils.recipe.BeyondAltarRecipe;
+import com.exaltedzoro.aeternautils.AeternaUtils;
+import com.exaltedzoro.aeternautils.recipe.BeyondAltarRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;

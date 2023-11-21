@@ -1,10 +1,10 @@
-package exaltedzoro.aeternautils;
+package com.exaltedzoro.aeternautils;
 
 import com.mojang.logging.LogUtils;
-import exaltedzoro.aeternautils.block.ModBlocks;
-import exaltedzoro.aeternautils.block.entity.ModBlockEntities;
-import exaltedzoro.aeternautils.item.ModItems;
-import exaltedzoro.aeternautils.recipe.ModRecipes;
+import com.exaltedzoro.aeternautils.block.ModBlocks;
+import com.exaltedzoro.aeternautils.block.entity.ModBlockEntities;
+import com.exaltedzoro.aeternautils.item.ModItems;
+import com.exaltedzoro.aeternautils.recipe.ModRecipes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;

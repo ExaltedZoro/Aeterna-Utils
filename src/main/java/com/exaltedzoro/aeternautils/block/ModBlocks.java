@@ -1,7 +1,7 @@
-package exaltedzoro.aeternautils.block;
+package com.exaltedzoro.aeternautils.block;
 
-import exaltedzoro.aeternautils.AeternaUtils;
-import exaltedzoro.aeternautils.item.ModItems;
+import com.exaltedzoro.aeternautils.AeternaUtils;
+import com.exaltedzoro.aeternautils.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;

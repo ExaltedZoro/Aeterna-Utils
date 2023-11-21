@@ -1,6 +1,6 @@
-package exaltedzoro.aeternautils.item;
+package com.exaltedzoro.aeternautils.item;
 
-import exaltedzoro.aeternautils.AeternaUtils;
+import com.exaltedzoro.aeternautils.AeternaUtils;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

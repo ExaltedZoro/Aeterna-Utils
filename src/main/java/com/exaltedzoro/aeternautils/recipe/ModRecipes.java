@@ -1,6 +1,6 @@
-package exaltedzoro.aeternautils.recipe;
+package com.exaltedzoro.aeternautils.recipe;
 
-import exaltedzoro.aeternautils.AeternaUtils;
+import com.exaltedzoro.aeternautils.AeternaUtils;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
