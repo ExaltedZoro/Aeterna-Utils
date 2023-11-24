@@ -3,6 +3,8 @@ package com.exaltedzoro.aeternautils.block;
 import com.exaltedzoro.aeternautils.block.entity.ModBlockEntities;
 import com.exaltedzoro.aeternautils.block.entity.BeyondAltarBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Inventory;
@@ -95,26 +97,20 @@ public class BeyondAltarBlock extends BaseEntityBlock {
 
         if(!pLevel.isClientSide() && pLevel.getBlockEntity(pPos) instanceof BeyondAltarBlockEntity entity) {
             Inventory inventory = pPlayer.getInventory();
-            if(!entity.getStack(1).isEmpty()) {
-                if(pPlayer.getItemInHand(pHand).isEmpty()) {
-                    pPlayer.setItemInHand(pHand, entity.getStack(1));
-                } else {
-                    pPlayer.getInventory().add(entity.getStack(1));
-                }
-                entity.setStack(1, ItemStack.EMPTY);
-            } else if(!pPlayer.getItemInHand(pHand).isEmpty() && entity.getStack(0).isEmpty()) {
-                entity.setStack(0, inventory.removeItem(inventory.selected, inventory.getSelected().getCount()));
+            if(!pPlayer.getItemInHand(pHand).isEmpty() && entity.getStack().isEmpty()) {
+                entity.setStack(inventory.removeItem(inventory.selected, inventory.getSelected().getCount()));
                 pPlayer.swing(pHand);
             } else {
-                if(pPlayer.getItemInHand(pHand).getItem() == entity.getStack(0).getItem()) {
-                    pPlayer.setItemInHand(pHand, new ItemStack(entity.getStack(0).getItem(), entity.getStack(0).getCount() + pPlayer.getItemInHand(pHand).getCount()));
+                if(pPlayer.getItemInHand(pHand).getItem() == entity.getStack().getItem()) {
+                    pPlayer.setItemInHand(pHand, new ItemStack(entity.getStack().getItem(), entity.getStack().getCount() + pPlayer.getItemInHand(pHand).getCount()));
                 } else if(pPlayer.getItemInHand(pHand).isEmpty()) {
-                    pPlayer.setItemInHand(pHand, entity.getStack(0));
+                    pPlayer.setItemInHand(pHand, entity.getStack());
                 } else {
-                    inventory.add(entity.getStack(0));
+                    inventory.add(entity.getStack());
                 }
-                entity.setStack(0, ItemStack.EMPTY);
+                entity.setStack(ItemStack.EMPTY);
                 pPlayer.swing(pHand);
+                pLevel.playSound(null, pPos, SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.25f, 2);
             }
         }
         return InteractionResult.SUCCESS;
