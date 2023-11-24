@@ -1,5 +1,6 @@
 package com.exaltedzoro.aeternautils;
 
+import com.exaltedzoro.aeternautils.networking.ModMessages;
 import com.mojang.logging.LogUtils;
 import com.exaltedzoro.aeternautils.block.ModBlocks;
 import com.exaltedzoro.aeternautils.block.entity.ModBlockEntities;
@@ -17,14 +18,12 @@ import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(AeternaUtils.MOD_ID)
-public class AeternaUtils
-{
+public class AeternaUtils {
     public static final String MOD_ID = "aeterna_utils";
 
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public AeternaUtils()
-    {
+    public AeternaUtils() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
@@ -38,19 +37,18 @@ public class AeternaUtils
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ModMessages.register();
+        });
     }
 
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
+    public static class ClientModEvents {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
+        public static void onClientSetup(FMLClientSetupEvent event) {
 
         }
     }
