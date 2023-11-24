@@ -1,14 +1,19 @@
 package com.exaltedzoro.aeternautils.block.entity;
 
+import com.exaltedzoro.aeternautils.networking.ModMessages;
+import com.exaltedzoro.aeternautils.networking.packet.SyncItemStackToClientPacket;
 import com.sammy.malum.common.block.storage.ItemPedestalBlockEntity;
+import com.sammy.malum.registry.common.SoundRegistry;
 import com.sammy.malum.registry.common.block.BlockRegistry;
 import com.exaltedzoro.aeternautils.recipe.BeyondAltarRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -27,10 +32,13 @@ import java.util.Optional;
 
 public class BeyondAltarBlockEntity extends BlockEntity {
     private final List<BlockPos> pedestalOffsets = new ArrayList<>();
-    private final ItemStackHandler itemHandler = new ItemStackHandler(2) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+            if(!level.isClientSide) {
+                ModMessages.sendToClients(new SyncItemStackToClientPacket(this, worldPosition));
+            }
         }
     };
 
@@ -49,12 +57,12 @@ public class BeyondAltarBlockEntity extends BlockEntity {
         this.pedestalOffsets.add(pPos.offset(2, 0, -2));
     }
 
-    public ItemStack getStack(int index) {
-        return itemHandler.getStackInSlot(index);
+    public ItemStack getStack() {
+        return itemHandler.getStackInSlot(0);
     }
 
-    public void setStack(int slot, ItemStack pStack) {
-        itemHandler.setStackInSlot(slot, pStack);
+    public void setStack(ItemStack pStack) {
+        itemHandler.setStackInSlot(0, pStack);
     }
 
     public boolean validateMultiblock(Level level, BlockPos altarPos) {
@@ -150,10 +158,11 @@ public class BeyondAltarBlockEntity extends BlockEntity {
                 if(recipe.isPresent()) {
                     if(canOutput(recipe.get(), pEntity) && recipe.get().doPedestalsMatch(getPedestalItems(level, blockpos, pEntity))) {
                         pEntity.itemHandler.extractItem(0, 1, false);
-                        pEntity.itemHandler.setStackInSlot(1, new ItemStack(recipe.get().getResultItem().getItem(), pEntity.itemHandler.getStackInSlot(1).getCount() + recipe.get().getResultItem().getCount()));
+                        level.addFreshEntity(new ItemEntity(level, blockpos.getX() + 0.5f, blockpos.getY() + 1, blockpos.getZ() + 0.5f, recipe.get().getResultItem()));
                         for(BlockPos pos : pEntity.pedestalOffsets) {
                             ((ItemPedestalBlockEntity) level.getBlockEntity(pos)).inventory.extractItem(0, 1, false);
                         }
+                        level.playSound(null, blockpos, SoundRegistry.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 1);
                         setChanged(level, blockpos, blockState);
                     }
                 }
@@ -175,5 +184,11 @@ public class BeyondAltarBlockEntity extends BlockEntity {
             }
         }
         return stacks;
+    }
+
+    public void setHandler(ItemStackHandler itemStackHandler) {
+        for(int i = 0; i < itemHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, itemStackHandler.getStackInSlot(i));
+        }
     }
 }
