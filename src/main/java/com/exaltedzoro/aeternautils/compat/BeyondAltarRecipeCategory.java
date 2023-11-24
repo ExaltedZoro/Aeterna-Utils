@@ -18,13 +18,14 @@ import net.minecraft.world.item.ItemStack;
 public class BeyondAltarRecipeCategory implements IRecipeCategory<BeyondAltarRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(AeternaUtils.MOD_ID, "beyond_altar");
     public static final ResourceLocation TEXTURE = new ResourceLocation(AeternaUtils.MOD_ID, "textures/gui/beyond_altar_jei_background.png");
+    static final RecipeType<BeyondAltarRecipe> RECIPE_TYPE = RecipeType.create(AeternaUtils.MOD_ID, "beyond_altar", BeyondAltarRecipe.class);
 
     private final IDrawable icon;
     private final IDrawable background;
 
     public BeyondAltarRecipeCategory(IGuiHelper helper) {
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.BEYOND_ALTAR.get()));
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 100, 100);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 128, 128);
     }
 
     @Override
@@ -49,15 +50,17 @@ public class BeyondAltarRecipeCategory implements IRecipeCategory<BeyondAltarRec
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, BeyondAltarRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 10, 10).addIngredients(recipe.getInput());
-        builder.addSlot(RecipeIngredientRole.INPUT, 20, 10).addIngredients(recipe.getPedestalItems().get(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 30, 10).addIngredients(recipe.getPedestalItems().get(1));
-        builder.addSlot(RecipeIngredientRole.INPUT, 40, 10).addIngredients(recipe.getPedestalItems().get(2));
-        builder.addSlot(RecipeIngredientRole.INPUT, 50, 10).addIngredients(recipe.getPedestalItems().get(3));
-        builder.addSlot(RecipeIngredientRole.INPUT, 60, 10).addIngredients(recipe.getPedestalItems().get(4));
-        builder.addSlot(RecipeIngredientRole.INPUT, 70, 10).addIngredients(recipe.getPedestalItems().get(5));
-        builder.addSlot(RecipeIngredientRole.INPUT, 80, 10).addIngredients(recipe.getPedestalItems().get(6));
-        builder.addSlot(RecipeIngredientRole.INPUT, 90, 10).addIngredients(recipe.getPedestalItems().get(7));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 100, 10).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.INPUT, 56, 22).addIngredients(recipe.getInput());
+        builder.addSlot(RecipeIngredientRole.INPUT, 0, 0).addIngredients(recipe.getPedestalItems().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 0, 20).addIngredients(recipe.getPedestalItems().get(1));
+        builder.addSlot(RecipeIngredientRole.INPUT, 0, 40).addIngredients(recipe.getPedestalItems().get(2));
+        builder.addSlot(RecipeIngredientRole.INPUT, 0, 60).addIngredients(recipe.getPedestalItems().get(3));
+        builder.addSlot(RecipeIngredientRole.INPUT, 112, 0).addIngredients(recipe.getPedestalItems().get(4));
+        builder.addSlot(RecipeIngredientRole.INPUT, 112, 20).addIngredients(recipe.getPedestalItems().get(5));
+        builder.addSlot(RecipeIngredientRole.INPUT, 112, 40).addIngredients(recipe.getPedestalItems().get(6));
+        builder.addSlot(RecipeIngredientRole.INPUT, 112, 60).addIngredients(recipe.getPedestalItems().get(7));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 56, 70).addItemStack(recipe.getResultItem());
     }
+
+
 }

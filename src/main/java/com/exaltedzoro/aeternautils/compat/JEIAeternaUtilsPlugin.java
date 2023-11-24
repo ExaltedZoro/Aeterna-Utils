@@ -1,14 +1,17 @@
 package com.exaltedzoro.aeternautils.compat;
 
 import com.exaltedzoro.aeternautils.AeternaUtils;
+import com.exaltedzoro.aeternautils.block.ModBlocks;
 import com.exaltedzoro.aeternautils.recipe.BeyondAltarRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
@@ -35,4 +38,8 @@ public class JEIAeternaUtilsPlugin implements IModPlugin {
         registration.addRecipes(BEYOND_ALTAR_TYPE, beyondAltarRecipeList);
     }
 
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BEYOND_ALTAR.get()), BeyondAltarRecipeCategory.RECIPE_TYPE);
+    }
 }
