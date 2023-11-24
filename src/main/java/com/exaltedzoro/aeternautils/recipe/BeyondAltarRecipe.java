@@ -38,7 +38,20 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
     }
 
     public boolean doPedestalsMatch (List<ItemStack> pedestals) {
-        if (this.pedestalItems.size() != pedestals.size()) {
+        int emptyInIngredients = 0;
+        int emptyInStacks = 0;
+        for (Ingredient ingredient : pedestalItems) {
+            if (ingredient.isEmpty()) {
+                emptyInIngredients++;
+            }
+        }
+        for (ItemStack stack : pedestals) {
+            if (stack.isEmpty()) {
+                emptyInStacks++;
+            }
+        }
+
+        if (emptyInIngredients != emptyInStacks) {
             return false;
         }
 
@@ -54,6 +67,7 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
                 if(pedestalItem.test(stack)) {
                     pedestals.set(i, ItemStack.EMPTY);
                     matched = true;
+                    break;
                 }
             }
 
