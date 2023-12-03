@@ -1,1 +1,6 @@
 A mod made for the Eryx Aeterna modpack to add custom recipe types and functionalities
+
+Current features
+
+Altar to the Beyond - A custom crafting multiblock using Malums Runewood and item pedestals
+Singularity Jars - A magic themed interpretation of Storage Drawers
