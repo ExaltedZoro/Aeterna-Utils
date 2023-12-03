@@ -101,7 +101,7 @@ public class BeyondAltarBlock extends BaseEntityBlock {
                 entity.setStack(inventory.removeItem(inventory.selected, inventory.getSelected().getCount()));
                 pPlayer.swing(pHand);
             } else {
-                if(pPlayer.getItemInHand(pHand).getItem() == entity.getStack().getItem()) {
+                if(pPlayer.getItemInHand(pHand).getItem() == entity.getStack().getItem() && pPlayer.getItemInHand(pHand).getCount() + entity.getStack().getCount() <= 64) {
                     pPlayer.setItemInHand(pHand, new ItemStack(entity.getStack().getItem(), entity.getStack().getCount() + pPlayer.getItemInHand(pHand).getCount()));
                 } else if(pPlayer.getItemInHand(pHand).isEmpty()) {
                     pPlayer.setItemInHand(pHand, entity.getStack());
