@@ -15,6 +15,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("beyond_altar", () ->
                     BlockEntityType.Builder.of(BeyondAltarBlockEntity::new, ModBlocks.BEYOND_ALTAR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<SingularityJarBlockEntity>> SINGULARITY_JAR =
+            BLOCK_ENTITIES.register("singularity_jar", () ->
+                    BlockEntityType.Builder.of(SingularityJarBlockEntity::new, ModBlocks.SINGULARITY_JAR.get()).build(null));
+
     public static void register (IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

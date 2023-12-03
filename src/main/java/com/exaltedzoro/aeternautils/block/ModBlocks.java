@@ -6,6 +6,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,7 +19,9 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, AeternaUtils.MOD_ID);
 
-    public static final RegistryObject<Block> BEYOND_ALTAR = registerBlock("beyond_altar", () -> new BeyondAltarBlock(BlockBehaviour.Properties.of(Material.STONE)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> BEYOND_ALTAR = registerBlock("beyond_altar", () -> new BeyondAltarBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2, 2)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
+    public static final RegistryObject<Block> SINGULARITY_JAR = registerBlock("singularity_jar", () -> new SingularityJarBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2, 1).sound(SoundType.GLASS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
