@@ -20,12 +20,14 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
     private final ItemStack output;
     private final Ingredient input;
     private final NonNullList<Ingredient> pedestalItems;
+    private final int sourceCost;
 
-    public BeyondAltarRecipe(ResourceLocation id, ItemStack output, Ingredient input, NonNullList<Ingredient> pedestalItems) {
+    public BeyondAltarRecipe(ResourceLocation id, ItemStack output, Ingredient input, NonNullList<Ingredient> pedestalItems, int sourceCost) {
         this.id = id;
         this.output = output;
         this.input = input;
         this.pedestalItems = pedestalItems;
+        this.sourceCost =  sourceCost;
     }
 
     @Override
@@ -102,6 +104,10 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
         return input;
     }
 
+    public int getSourceCost() {
+        return sourceCost;
+    }
+
     @Override
     public boolean isSpecial() {
         return true;
@@ -147,31 +153,34 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
                 pedestalItems.set(i, Ingredient.fromJson(pedestals.get(i)));
             }
 
-            return new BeyondAltarRecipe(pRecipeId, output, input, pedestalItems);
+            int sourceCost = GsonHelper.getAsInt(pSerializedRecipe, "sourceCost");
+
+            return new BeyondAltarRecipe(pRecipeId, output, input, pedestalItems, sourceCost);
         }
 
         @Override
         public @Nullable BeyondAltarRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
-            int length = pBuffer.readInt();
             ItemStack output = pBuffer.readItem();
             Ingredient input = Ingredient.fromNetwork(pBuffer);
             NonNullList<Ingredient> pedestalItems = NonNullList.withSize(8, Ingredient.EMPTY);
 
-            for (int i = 0; i < length; i++) {
+            for (int i = 0; i < 8; i++) {
                 pedestalItems.set(i, Ingredient.fromNetwork(pBuffer));
             }
 
-            return new BeyondAltarRecipe(pRecipeId, output, input, pedestalItems);
+            int sourceCost = pBuffer.readInt();
+
+            return new BeyondAltarRecipe(pRecipeId, output, input, pedestalItems, sourceCost);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, BeyondAltarRecipe pRecipe) {
-            pBuffer.writeInt(pRecipe.pedestalItems.size());
             pBuffer.writeItemStack(pRecipe.output, false);
             pRecipe.input.toNetwork(pBuffer);
             for (Ingredient ing : pRecipe.pedestalItems) {
                 ing.toNetwork(pBuffer);
             }
+            pBuffer.writeInt(pRecipe.sourceCost);
         }
     }
 }

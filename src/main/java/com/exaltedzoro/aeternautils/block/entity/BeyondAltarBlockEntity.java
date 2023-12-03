@@ -2,6 +2,7 @@ package com.exaltedzoro.aeternautils.block.entity;
 
 import com.exaltedzoro.aeternautils.networking.ModMessages;
 import com.exaltedzoro.aeternautils.networking.packet.SyncItemStackToClientPacket;
+import com.hollingsworth.arsnouveau.api.util.SourceUtil;
 import com.sammy.malum.common.block.storage.ItemPedestalBlockEntity;
 import com.sammy.malum.registry.common.SoundRegistry;
 import com.sammy.malum.registry.common.block.BlockRegistry;
@@ -145,35 +146,30 @@ public class BeyondAltarBlockEntity extends BlockEntity {
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    public static void tick(Level level, BlockPos blockpos, BlockState blockState, BeyondAltarBlockEntity pEntity) {
+    public static void tick(Level level, BlockPos blockPos, BlockState blockState, BeyondAltarBlockEntity pEntity) {
         if(level.isClientSide) {
             return;
         }
 
         if(level.getGameTime() % 20L == 0L) {
-            if(pEntity.validateMultiblock(level, blockpos)) {
+            if(pEntity.validateMultiblock(level, blockPos)) {
                 SimpleContainer inventory = new SimpleContainer(1);
                 inventory.setItem(0, pEntity.itemHandler.getStackInSlot(0));
                 Optional<BeyondAltarRecipe> recipe = level.getRecipeManager().getRecipeFor(BeyondAltarRecipe.Type.INSTANCE, inventory, level);
                 if(recipe.isPresent()) {
-                    if(canOutput(recipe.get(), pEntity) && recipe.get().doPedestalsMatch(getPedestalItems(level, blockpos, pEntity))) {
+                    if(recipe.get().doPedestalsMatch(getPedestalItems(level, blockPos, pEntity)) && SourceUtil.hasSourceNearby(blockPos, level, 5, recipe.get().getSourceCost())) {
+                        SourceUtil.takeSourceWithParticles(blockPos, level, 5, recipe.get().getSourceCost());
                         pEntity.itemHandler.extractItem(0, 1, false);
-                        level.addFreshEntity(new ItemEntity(level, blockpos.getX() + 0.5f, blockpos.getY() + 1, blockpos.getZ() + 0.5f, recipe.get().getResultItem()));
+                        level.addFreshEntity(new ItemEntity(level, blockPos.getX() + 0.5f, blockPos.getY() + 1, blockPos.getZ() + 0.5f, recipe.get().getResultItem()));
                         for(BlockPos pos : pEntity.pedestalOffsets) {
                             ((ItemPedestalBlockEntity) level.getBlockEntity(pos)).inventory.extractItem(0, 1, false);
                         }
-                        level.playSound(null, blockpos, SoundRegistry.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 1);
-                        setChanged(level, blockpos, blockState);
+                        level.playSound(null, blockPos, SoundRegistry.ALTAR_CRAFT.get(), SoundSource.BLOCKS, 1, 1);
+                        setChanged(level, blockPos, blockState);
                     }
                 }
             }
         }
-    }
-
-    private static boolean canOutput(BeyondAltarRecipe recipe, BeyondAltarBlockEntity entity) {
-        if(entity.itemHandler.getStackInSlot(1).isEmpty()) {
-            return true;
-        } else return recipe.getResultItem().getItem() == entity.itemHandler.getStackInSlot(1).getItem() && entity.itemHandler.getStackInSlot(1).getCount() + recipe.getResultItem().getCount() <= 64;
     }
 
     private static List<ItemStack> getPedestalItems(Level level, BlockPos pos, BeyondAltarBlockEntity entity) {
