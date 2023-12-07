@@ -166,6 +166,21 @@ dependencies {
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77")
 
+    implementation fg.deobf("curse.maven:spirit-495509:4523732")
+
+    implementation fg.deobf("curse.maven:occultism-361026:4768344")
+    implementation fg.deobf("curse.maven:smartbrainlib-661293:4458565")
+    implementation fg.deobf("curse.maven:modonomicon-538392:4675974")
+    implementation fg.deobf("curse.maven:geckolib-388172:4407241")
+
+    implementation fg.deobf("curse.maven:forbidden-arcanus-309858:4852521")
+    implementation fg.deobf("curse.maven:valhelsia-core-416935:4181245")
+
+    implementation fg.deobf("curse.maven:silent-gear-297039:4370101")
+    implementation fg.deobf("curse.maven:silent-lib-242998:3968715")
+
+    implementation fg.deobf("curse.maven:resourceful-lib-570073:4477753")
+
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
