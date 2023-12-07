@@ -1,0 +1,144 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "minecraft:block/stone_bricks",
+		"particle": "minecraft:block/stone_bricks"
+	},
+	"elements": [
+		{
+			"name": "lower base",
+			"from": [1, 0, 1],
+			"to": [15, 1, 15],
+			"faces": {
+				"north": {"uv": [1, 0, 15, 1], "texture": "#0"},
+				"east": {"uv": [1, 0, 15, 1], "texture": "#0"},
+				"south": {"uv": [1, 0, 15, 1], "texture": "#0"},
+				"west": {"uv": [1, 0, 15, 1], "texture": "#0"},
+				"up": {"uv": [1, 1, 15, 15], "texture": "#0"},
+				"down": {"uv": [1, 1, 15, 15], "texture": "#0"}
+			}
+		},
+		{
+			"name": "upper base",
+			"from": [2, 1, 2],
+			"to": [14, 3, 14],
+			"faces": {
+				"north": {"uv": [2, 0, 14, 2], "texture": "#0"},
+				"east": {"uv": [2, 0, 14, 2], "texture": "#0"},
+				"south": {"uv": [2, 0, 14, 2], "texture": "#0"},
+				"west": {"uv": [2, 0, 14, 2], "texture": "#0"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#0"},
+				"down": {"uv": [2, 2, 14, 14], "texture": "#0"}
+			}
+		},
+		{
+			"name": "pedestal",
+			"from": [4, 3, 4],
+			"to": [12, 10, 12],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 8], "texture": "#0"},
+				"east": {"uv": [0, 0, 8, 8], "texture": "#0"},
+				"south": {"uv": [0, 0, 8, 8], "texture": "#0"},
+				"west": {"uv": [0, 0, 8, 8], "texture": "#0"},
+				"up": {"uv": [0, 0, 8, 8], "texture": "#0"},
+				"down": {"uv": [0, 0, 8, 8], "texture": "#0"}
+			}
+		},
+		{
+			"name": "platform",
+			"from": [2, 10, 2],
+			"to": [14, 13, 14],
+			"faces": {
+				"north": {"uv": [2, 0, 14, 3], "texture": "#0"},
+				"east": {"uv": [2, 0, 14, 3], "texture": "#0"},
+				"south": {"uv": [2, 0, 14, 3], "texture": "#0"},
+				"west": {"uv": [2, 0, 14, 3], "texture": "#0"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#0"},
+				"down": {"uv": [2, 2, 14, 14], "texture": "#0"}
+			}
+		},
+		{
+			"name": "candle1",
+			"from": [0, 11, 0],
+			"to": [3, 16, 3],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"east": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"south": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"west": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"up": {"uv": [0, 0, 3, 3], "texture": "#0"},
+				"down": {"uv": [0, 0, 3, 3], "texture": "#0"}
+			}
+		},
+		{
+			"name": "candle2",
+			"from": [0, 11, 13],
+			"to": [3, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"east": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"south": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"west": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"up": {"uv": [0, 0, 3, 3], "texture": "#0"},
+				"down": {"uv": [0, 0, 3, 3], "texture": "#0"}
+			}
+		},
+		{
+			"name": "candle3",
+			"from": [13, 11, 0],
+			"to": [16, 16, 3],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"east": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"south": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"west": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"up": {"uv": [0, 0, 3, 3], "texture": "#0"},
+				"down": {"uv": [0, 0, 3, 3], "texture": "#0"}
+			}
+		},
+		{
+			"name": "candle4",
+			"from": [13, 11, 13],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"east": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"south": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"west": {"uv": [0, 0, 3, 5], "texture": "#0"},
+				"up": {"uv": [0, 0, 3, 3], "texture": "#0"},
+				"down": {"uv": [0, 0, 3, 3], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 225, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

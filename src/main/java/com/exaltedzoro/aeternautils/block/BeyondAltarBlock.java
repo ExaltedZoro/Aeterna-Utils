@@ -3,8 +3,10 @@ package com.exaltedzoro.aeternautils.block;
 import com.exaltedzoro.aeternautils.block.entity.ModBlockEntities;
 import com.exaltedzoro.aeternautils.block.entity.BeyondAltarBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Inventory;
@@ -22,7 +24,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,12 +37,27 @@ public class BeyondAltarBlock extends BaseEntityBlock {
         super(properties);
     }
 
-    private static final VoxelShape SHAPE =
-            Block.box(0, 0, 0, 16, 8, 16);
+    private static final VoxelShape SHAPE = makeShape();
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pGetter, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;
+    }
+
+    public static VoxelShape makeShape() {
+        VoxelShape shape = Shapes.empty();
+        //Base and pedestal
+        shape = Shapes.join(shape, box(1, 0, 1, 15, 1, 15), BooleanOp.OR);
+        shape = Shapes.join(shape, box(2, 1, 2, 14, 3, 14), BooleanOp.OR);
+        shape = Shapes.join(shape, box(4, 3, 4, 12, 10, 12), BooleanOp.OR);
+        //Platform
+        shape = Shapes.join(shape, box(2, 10, 2, 14, 13, 14), BooleanOp.OR);
+        //Candles
+        shape = Shapes.join(shape, box(0, 11, 0, 3, 16, 3), BooleanOp.OR);
+        shape = Shapes.join(shape, box(0, 11, 13, 3, 16, 16), BooleanOp.OR);
+        shape = Shapes.join(shape, box(13, 11, 0, 16, 16, 3), BooleanOp.OR);
+        shape = Shapes.join(shape, box(13, 11, 13, 16, 16, 16), BooleanOp.OR);
+        return shape;
     }
 
     @Override
@@ -70,6 +89,24 @@ public class BeyondAltarBlock extends BaseEntityBlock {
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
+    }
+
+    @Override
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+        double blockX = pPos.getX();
+        double blockY = pPos.getY();
+        double blockZ = pPos.getZ();
+        pLevel.addParticle(ParticleTypes.SMALL_FLAME, blockX + (1.5/16), blockY + 1, blockZ + (1.5/16), 0, 0, 0);
+        pLevel.addParticle(ParticleTypes.SMOKE, blockX + (1.5/16), blockY + 1, blockZ + (1.5/16), 0, 0, 0);
+
+        pLevel.addParticle(ParticleTypes.SMALL_FLAME, blockX + (14.5/16), blockY + 1, blockZ + (1.5/16), 0, 0, 0);
+        pLevel.addParticle(ParticleTypes.SMOKE, blockX + (14.5/16), blockY + 1, blockZ + (1.5/16), 0, 0, 0);
+
+        pLevel.addParticle(ParticleTypes.SMALL_FLAME, blockX + (1.5/16), blockY + 1, blockZ + (14.5/16), 0, 0, 0);
+        pLevel.addParticle(ParticleTypes.SMOKE, blockX + (1.5/16), blockY + 1, blockZ + (14.5/16), 0, 0, 0);
+
+        pLevel.addParticle(ParticleTypes.SMALL_FLAME, blockX + (14.5/16), blockY + 1, blockZ + (14.5/16), 0, 0, 0);
+        pLevel.addParticle(ParticleTypes.SMOKE, blockX + (14.5/16), blockY + 1, blockZ + (14.5/16), 0, 0, 0);
     }
 
     @Override
