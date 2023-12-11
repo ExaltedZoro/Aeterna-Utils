@@ -6,6 +6,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class SingularityJarItemStackHandler extends ItemStackHandler {
     protected NonNullList<ItemStack> stacks;
+    public int tier = 1;
 
     public SingularityJarItemStackHandler() {
         this(1);
@@ -21,6 +22,12 @@ public class SingularityJarItemStackHandler extends ItemStackHandler {
 
     @Override
     public int getSlotLimit(int slot) {
-        return 256;
+        return switch (tier) {
+            case 2 -> 65536;
+            case 3 -> 2097152;
+            case 4 -> 67108864;
+            case 5 -> 2147483647;
+            default -> 2048;
+        };
     }
 }
