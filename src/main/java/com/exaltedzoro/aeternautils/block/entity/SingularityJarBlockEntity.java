@@ -4,8 +4,6 @@ import com.exaltedzoro.aeternautils.handler.SingularityJarItemStackHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.Containers;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -68,18 +66,7 @@ public class SingularityJarBlockEntity extends BlockEntity {
         lazyItemHandler.invalidate();
     }
 
-    public void drops() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for(int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-
-        Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
-
-
-    public void setHandler(ItemStackHandler itemStackHandler) {
+    public void setItemHandler(ItemStackHandler itemStackHandler) {
         for(int i = 0; i < itemHandler.getSlots(); i++) {
             itemHandler.setStackInSlot(i, itemStackHandler.getStackInSlot(i));
         }
@@ -103,5 +90,13 @@ public class SingularityJarBlockEntity extends BlockEntity {
 
     public int getMaxStackSize() {
         return itemHandler.getSlotLimit(0);
+    }
+
+    public void setHandlerTier(int tier) {
+        itemHandler.tier = tier;
+    }
+
+    public SingularityJarItemStackHandler getItemHandler() {
+        return itemHandler;
     }
 }
