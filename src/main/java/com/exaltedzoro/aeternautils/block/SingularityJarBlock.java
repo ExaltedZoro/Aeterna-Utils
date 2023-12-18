@@ -122,6 +122,11 @@ public class SingularityJarBlock extends BaseEntityBlock {
         return entity;
     }
 
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
+    }
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pType) {
@@ -165,7 +170,7 @@ public class SingularityJarBlock extends BaseEntityBlock {
                         entity.setHandlerTier(tierInHand);
                     }
                 }
-            } else {
+            } else if(!lidClicked(pHit.getLocation().subtract(pPos.getX(), pPos.getY(), pPos.getZ()))) {
                 if(entity.ticksSinceRightClick <= 20 && entity.ticksSinceRightClick >= 0) {
                     int amountInInventory = 0;
                     int jarCapacityLeft = entity.getMaxStackSize() - entity.getStack().getCount();
