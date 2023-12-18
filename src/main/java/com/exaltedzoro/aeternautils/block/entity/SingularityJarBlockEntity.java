@@ -1,6 +1,8 @@
 package com.exaltedzoro.aeternautils.block.entity;
 
 import com.exaltedzoro.aeternautils.handler.SingularityJarItemStackHandler;
+import com.exaltedzoro.aeternautils.networking.ModMessages;
+import com.exaltedzoro.aeternautils.networking.packet.SyncItemStackToClientPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -21,6 +23,9 @@ public class SingularityJarBlockEntity extends BlockEntity {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+            if(!level.isClientSide) {
+                ModMessages.sendToClients(new SyncItemStackToClientPacket(this, worldPosition));
+            }
         }
     };
 
