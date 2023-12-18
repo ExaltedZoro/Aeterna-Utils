@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": {"model": "aeterna_utils:block/beyond_altar"},
+    "facing=east": {"model": "aeterna_utils:block/beyond_altar", "y": 90},
+    "facing=south": {"model": "aeterna_utils:block/beyond_altar", "y": 180},
+    "facing=west": {"model": "aeterna_utils:block/beyond_altar", "y": 270}
+  }
+}
