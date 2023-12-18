@@ -27,7 +27,7 @@ public class BeyondAltarBlockEntityRenderer implements BlockEntityRenderer<Beyon
 
         ItemStack itemStack = pBlockEntity.getStack();
         pPoseStack.pushPose();
-        pPoseStack.translate(0.5f, 0.8f, 0.5f);
+        pPoseStack.translate(0.5f, 0.9f, 0.5f);
         pPoseStack.scale(1f, 1f, 1f);
         pPoseStack.mulPose(Vector3f.YP.rotationDegrees(level.getGameTime() % 360L + pPartialTick));
         itemRenderer.render(itemStack, ItemTransforms.TransformType.GROUND, true, pPoseStack, pBufferSource, getLightLevel(pBlockEntity.getLevel(),
