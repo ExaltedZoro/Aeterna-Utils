@@ -176,10 +176,11 @@ dependencies {
     implementation fg.deobf("curse.maven:forbidden-arcanus-309858:4852521")
     implementation fg.deobf("curse.maven:valhelsia-core-416935:4181245")
 
-    implementation fg.deobf("curse.maven:silent-gear-297039:4370101")
-    implementation fg.deobf("curse.maven:silent-lib-242998:3968715")
-
     implementation fg.deobf("curse.maven:resourceful-lib-570073:4477753")
+
+    implementation fg.deobf("curse.maven:kubejs-238086:4931520")
+    implementation fg.deobf("curse.maven:rhino-416294:4805925")
+    implementation fg.deobf("curse.maven:architectury-api-419699:4555749")
 
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
