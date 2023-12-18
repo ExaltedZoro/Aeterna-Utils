@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "tier=1": { "model": "aeterna_utils:block/singularity_jar_tier_1" },
+    "tier=2": { "model": "aeterna_utils:block/singularity_jar_tier_2" },
+    "tier=3": { "model": "aeterna_utils:block/singularity_jar_tier_3" },
+    "tier=4": { "model": "aeterna_utils:block/singularity_jar_tier_4" },
+    "tier=5": { "model": "aeterna_utils:block/singularity_jar_tier_5" }
+  }
+}

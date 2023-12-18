@@ -1,3 +1,35 @@
 {
-  "parent": "aeterna_utils:block/singularity_jar"
+  "parent": "item/generated",
+  "overrides": [
+    {
+      "predicate": {
+        "tier": 0
+      },
+      "model": "aeterna_utils:block/singularity_jar_tier_1"
+    },
+    {
+      "predicate": {
+        "tier": 2
+      },
+      "model": "aeterna_utils:block/singularity_jar_tier_2"
+    },
+    {
+      "predicate": {
+        "tier": 3
+      },
+      "model": "aeterna_utils:block/singularity_jar_tier_3"
+    },
+    {
+      "predicate": {
+        "tier": 4
+      },
+      "model": "aeterna_utils:block/singularity_jar_tier_4"
+    },
+    {
+      "predicate": {
+        "tier": 5
+      },
+      "model": "aeterna_utils:block/singularity_jar_tier_5"
+    }
+  ]
 }
