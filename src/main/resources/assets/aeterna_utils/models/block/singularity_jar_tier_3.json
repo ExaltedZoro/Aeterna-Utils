@@ -1,11 +1,13 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"0": "minecraft:block/glass",
 		"1": "occultism:block/iesnium_block",
 		"2": "aeterna_utils:block/singularity_jar/lid/tier_3_side",
 		"particle": "minecraft:block/glass"
 	},
+	"render_type": "cutout",
 	"elements": [
 		{
 			"name": "body",

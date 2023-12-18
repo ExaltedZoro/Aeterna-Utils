@@ -1,11 +1,13 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"1": "minecraft:block/glass",
 		"2": "minecraft:block/gold_block",
 		"3": "aeterna_utils:block/singularity_jar/lid/tier_1_side",
-		"particle": "minecraft:block/gold_block"
+		"particle": "minecraft:block/glass"
 	},
+	"render_type": "cutout",
 	"elements": [
 		{
 			"name": "body",
