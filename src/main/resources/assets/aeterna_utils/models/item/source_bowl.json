@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "aeterna_utils:item/source_bowl"
+  }
+}
