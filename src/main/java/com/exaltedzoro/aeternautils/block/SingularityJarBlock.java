@@ -175,37 +175,75 @@ public class SingularityJarBlock extends BaseEntityBlock {
                     int amountInInventory = 0;
                     int jarCapacityLeft = entity.getMaxStackSize() - entity.getStack().getCount();
                     Item itemInJar = entity.getStack().getItem();
-                    for(int i = 0; i < inventory.getContainerSize(); i++) {
-                        if(jarCapacityLeft == 0) {
-                            break;
+                    if(entity.getStack().hasTag()) {
+                        for(int i = 0; i < inventory.getContainerSize(); i++) {
+                            if(jarCapacityLeft == 0) {
+                                break;
+                            }
+                            if(inventory.getItem(i).getItem() == itemInJar && inventory.getItem(i).hasTag()) {
+                                if(inventory.getItem(i).getTag().equals(entity.getStack().getTag()) && jarCapacityLeft - inventory.getItem(i).getCount() >= 0) {
+                                    amountInInventory = amountInInventory + inventory.getItem(i).getCount();
+                                    jarCapacityLeft = jarCapacityLeft - inventory.getItem(i).getCount();
+                                    inventory.removeItem(i, inventory.getItem(i).getCount());
+                                } else if(inventory.getItem(i).getItem() == itemInJar && inventory.getItem(i).getTag().equals(entity.getStack().getTag())) {
+                                    amountInInventory = amountInInventory + jarCapacityLeft;
+                                    inventory.removeItem(i, jarCapacityLeft);
+                                    jarCapacityLeft = 0;
+                                }
+                            }
                         }
-                        if(inventory.getItem(i).getItem() == itemInJar && jarCapacityLeft - inventory.getItem(i).getCount() >= 0) {
-                            amountInInventory = amountInInventory + inventory.getItem(i).getCount();
-                            jarCapacityLeft = jarCapacityLeft - inventory.getItem(i).getCount();
-                            inventory.removeItem(i, inventory.getItem(i).getCount());
-                        } else if(inventory.getItem(i).getItem() == itemInJar) {
-                            amountInInventory = amountInInventory + jarCapacityLeft;
-                            inventory.removeItem(i, jarCapacityLeft);
-                            jarCapacityLeft = 0;
+                        entity.getStack().grow(amountInInventory);
+                    } else {
+                        for(int i = 0; i < inventory.getContainerSize(); i++) {
+                            if(jarCapacityLeft == 0) {
+                                break;
+                            }
+                            if(inventory.getItem(i).getItem() == itemInJar && jarCapacityLeft - inventory.getItem(i).getCount() >= 0) {
+                                amountInInventory = amountInInventory + inventory.getItem(i).getCount();
+                                jarCapacityLeft = jarCapacityLeft - inventory.getItem(i).getCount();
+                                inventory.removeItem(i, inventory.getItem(i).getCount());
+                            } else if(inventory.getItem(i).getItem() == itemInJar) {
+                                amountInInventory = amountInInventory + jarCapacityLeft;
+                                inventory.removeItem(i, jarCapacityLeft);
+                                jarCapacityLeft = 0;
+                            }
                         }
+                        entity.getStack().grow(amountInInventory);
                     }
-                    entity.setStack(new ItemStack(itemInJar, entity.getStack().getCount() + amountInInventory));
                 }
 
                 if(!pPlayer.getItemInHand(pHand).isEmpty()) {
                     if(entity.getStack().isEmpty()) {
-                        entity.setStack(new ItemStack(pPlayer.getItemInHand(pHand).getItem(), pPlayer.getItemInHand(pHand).getCount()));
+                        entity.setStack(pPlayer.getItemInHand(pHand));
                         pPlayer.setItemInHand(pHand, ItemStack.EMPTY);
                     } else if (entity.getStack().getItem() == pPlayer.getItemInHand(pHand).getItem()) {
-                        if(entity.getStack().getCount() + pPlayer.getItemInHand(pHand).getCount() <= entity.getMaxStackSize()) {
-                            entity.setStack(new ItemStack(entity.getStack().getItem(), entity.getStack().getCount() + pPlayer.getItemInHand(pHand).getCount()));
-                            pPlayer.setItemInHand(pHand, ItemStack.EMPTY);
-                        } else {
-                            int inputAmount = entity.getMaxStackSize() - entity.getStack().getCount();
-                            entity.setStack(new ItemStack(entity.getStack().getItem(), entity.getMaxStackSize()));
-                            pPlayer.setItemInHand(pHand, new ItemStack(pPlayer.getItemInHand(pHand).getItem(), pPlayer.getItemInHand(pHand).getCount() - inputAmount));
+                        if(entity.getStack().hasTag()) {
+                            if(pPlayer.getItemInHand(pHand).hasTag()) {
+                                if(pPlayer.getItemInHand(pHand).getTag().equals(pPlayer.getItemInHand(pHand).getTag())) {
+                                    if(entity.getStack().getCount() + pPlayer.getItemInHand(pHand).getCount() <= entity.getMaxStackSize()) {
+                                        entity.getStack().grow(pPlayer.getItemInHand(pHand).getCount());
+                                        pPlayer.setItemInHand(pHand, ItemStack.EMPTY);
+                                    } else {
+                                        int inputAmount = entity.getMaxStackSize() - entity.getStack().getCount();
+                                        entity.getStack().setCount(entity.getMaxStackSize());
+                                        pPlayer.getItemInHand(pHand).shrink(inputAmount);
+                                    }
+                                }
+                            }
+                        } else if(!pPlayer.getItemInHand(pHand).hasTag()) {
+                            if(entity.getStack().getCount() + pPlayer.getItemInHand(pHand).getCount() <= entity.getMaxStackSize()) {
+                                entity.getStack().grow(pPlayer.getItemInHand(pHand).getCount());
+                                pPlayer.setItemInHand(pHand, ItemStack.EMPTY);
+                            } else {
+                                int inputAmount = entity.getMaxStackSize() - entity.getStack().getCount();
+                                entity.getStack().setCount(entity.getMaxStackSize());
+                                pPlayer.getItemInHand(pHand).shrink(inputAmount);
+                            }
                         }
                     }
+                }
+                if(entity.getStack().isEmpty()) {
+                    entity.setStack(ItemStack.EMPTY);
                 }
                 entity.ticksSinceRightClick = 0;
             }
@@ -222,29 +260,52 @@ public class SingularityJarBlock extends BaseEntityBlock {
             ItemStack stack = entity.getStack();
             if(!stack.isEmpty()) {
                 if(!pPlayer.isCrouching()) {
-                    if(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
-                        pPlayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(stack.getItem(), 1));
-                    } else {
-                        pPlayer.getInventory().add(new ItemStack(stack.getItem(), 1));
-                    }
-                    entity.setStack(new ItemStack(stack.getItem(), stack.getCount() - 1));
-                } else {
-                    if(entity.getStack().getCount() <= 64) {
+                    if(stack.hasTag()) {
+                        ItemStack stackToGive = stack.copy();
+                        stackToGive.setCount(1);
                         if(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
-                            pPlayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(stack.getItem(), stack.getCount()));
-                        } else {
-                            pPlayer.getInventory().add(new ItemStack(stack.getItem(), stack.getCount()));
+                            pPlayer.setItemInHand(InteractionHand.MAIN_HAND, stackToGive);
+                        } else if(!pPlayer.addItem(stackToGive)){
+                            pPlayer.drop(stackToGive, false);
+                        }
+                    } else {
+                        if(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
+                            pPlayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(stack.getItem(), 1));
+                        } else if(!pPlayer.addItem(new ItemStack(stack.getItem(), 1))){
+                            pPlayer.drop(new ItemStack(stack.getItem(), 1, stack.getTag()), false);
+                        }
+                    }
+                    stack.shrink(1);
+                } else {
+                    if(stack.getCount() <= 64) {
+                        if(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
+                            pPlayer.setItemInHand(InteractionHand.MAIN_HAND, stack);
+                        } else if(!pPlayer.addItem(stack)){
+                            pPlayer.drop(stack, false);
                         }
                         entity.setStack(ItemStack.EMPTY);
                     } else {
-                        if(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
-                            pPlayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(stack.getItem(), 64));
+                        if(stack.hasTag()) {
+                            ItemStack stackToGive = stack.copy();
+                            stackToGive.setCount(64);
+                            if(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
+                                pPlayer.setItemInHand(InteractionHand.MAIN_HAND, stackToGive);
+                            } else if(!pPlayer.addItem(stackToGive)){
+                                pPlayer.drop(stackToGive, false);
+                            }
                         } else {
-                            pPlayer.getInventory().add(new ItemStack(stack.getItem(), 64));
+                            if(pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
+                                pPlayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(stack.getItem(), 64));
+                            } else if(!pPlayer.addItem(new ItemStack(stack.getItem(), 64))) {
+                                pPlayer.drop(new ItemStack(stack.getItem(), 64), false);
+                            }
                         }
-                        entity.setStack(new ItemStack(stack.getItem(), stack.getCount() - 64));
+                        stack.shrink(64);
                     }
                 }
+            }
+            if(stack.isEmpty()) {
+                entity.setStack(ItemStack.EMPTY);
             }
         }
     }
