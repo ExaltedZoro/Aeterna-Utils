@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "aeterna_utils:beyond_altar"
+    "aeterna_utils:beyond_altar",
+    "aeterna_utils:singularity_jar"
   ]
 }
