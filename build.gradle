@@ -197,9 +197,9 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, "modid.refmap.json"
+    add sourceSets.main, "aeterna_utils.refmap.json"
 
-    config "modid.mixin.json"
+    config "aeterna_utils.mixin.json"
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

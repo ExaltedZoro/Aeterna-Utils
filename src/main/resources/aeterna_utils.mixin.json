@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "com.exaltedzoro.aeternautils.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "aeterna_utils.refmap.json",
+  "mixins": [
+    "SourceBlockMixin"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8"
+}
