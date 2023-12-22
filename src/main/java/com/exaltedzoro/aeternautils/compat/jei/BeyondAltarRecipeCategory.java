@@ -1,4 +1,4 @@
-package com.exaltedzoro.aeternautils.compat;
+package com.exaltedzoro.aeternautils.compat.jei;
 
 import com.exaltedzoro.aeternautils.AeternaUtils;
 import com.exaltedzoro.aeternautils.block.ModBlocks;
