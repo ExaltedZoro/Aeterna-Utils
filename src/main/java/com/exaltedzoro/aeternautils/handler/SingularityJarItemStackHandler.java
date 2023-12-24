@@ -1,6 +1,10 @@
 package com.exaltedzoro.aeternautils.handler;
 
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -29,5 +33,9 @@ public class SingularityJarItemStackHandler extends ItemStackHandler {
             case 5 -> 2147483647;
             default -> 2048;
         };
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
     }
 }
