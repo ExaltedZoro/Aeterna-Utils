@@ -98,7 +98,7 @@ public class SingularityJarBlockEntity extends BlockEntity {
     }
 
     public void setHandlerTier(int tier) {
-        itemHandler.tier = tier;
+        itemHandler.setTier(tier);
     }
 
     public SingularityJarItemStackHandler getItemHandler() {
