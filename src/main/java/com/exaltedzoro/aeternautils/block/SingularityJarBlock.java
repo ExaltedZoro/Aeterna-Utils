@@ -2,12 +2,13 @@ package com.exaltedzoro.aeternautils.block;
 
 import com.exaltedzoro.aeternautils.block.entity.ModBlockEntities;
 import com.exaltedzoro.aeternautils.block.entity.SingularityJarBlockEntity;
-import com.exaltedzoro.aeternautils.handler.SingularityJarItemStackHandler;
 import com.klikli_dev.occultism.registry.OccultismBlocks;
 import com.stal111.forbidden_arcanus.core.init.ModBlocks;
 import me.codexadrian.spirit.registry.SpiritBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -91,9 +92,13 @@ public class SingularityJarBlock extends BaseEntityBlock {
         if(pState.hasBlockEntity()) {
             if(pLevel.getBlockEntity(pPos) instanceof SingularityJarBlockEntity entity && pStack.hasTag()) {
                 CompoundTag itemNBT = pStack.getTag();
-                SingularityJarItemStackHandler itemStackHandler = entity.getItemHandler();
-                itemStackHandler.deserializeNBT(itemNBT.getCompound("inventory"));
-                entity.setItemHandler(itemStackHandler);
+                String itemID = itemNBT.getString("item");
+                Item item = Registry.ITEM.get(new ResourceLocation(itemID));
+                int count = itemNBT.getInt("count");
+                CompoundTag nbt = itemNBT.getCompound("tag");
+                ItemStack stack = new ItemStack(item, count);
+                stack.setTag(nbt);
+                entity.setStack(stack);
             }
         }
         super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
@@ -357,17 +362,6 @@ public class SingularityJarBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if(pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if(blockEntity instanceof SingularityJarBlockEntity) {
-                //((SingularityJarBlockEntity) blockEntity).drops();
-            }
-        }
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
-
-    @Override
     public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
         List<ItemStack> drops = super.getDrops(pState, pBuilder);
         BlockEntity blockEntity = pBuilder.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
@@ -378,7 +372,12 @@ public class SingularityJarBlock extends BaseEntityBlock {
             }
 
             if(!entity.getStack().isEmpty()) {
-                stack.getOrCreateTag().put("inventory", entity.getItemHandler().serializeNBT());
+                ResourceLocation resourceLocation = Registry.ITEM.getKey(entity.getStack().getItem());
+                stack.getOrCreateTag().putString("item", resourceLocation.toString());
+                if(entity.getStack().hasTag()) {
+                    stack.getOrCreateTag().put("tag", entity.getStack().getTag());
+                }
+                stack.getOrCreateTag().putInt("count", entity.getStack().getCount());
             }
             drops.add(stack);
         }
