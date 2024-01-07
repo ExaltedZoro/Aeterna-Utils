@@ -3,12 +3,6 @@
   "overrides": [
     {
       "predicate": {
-        "tier": 0
-      },
-      "model": "aeterna_utils:block/singularity_jar_tier_1"
-    },
-    {
-      "predicate": {
         "tier": 2
       },
       "model": "aeterna_utils:block/singularity_jar_tier_2"
