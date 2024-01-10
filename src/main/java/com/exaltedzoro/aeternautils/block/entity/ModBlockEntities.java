@@ -1,6 +1,7 @@
 package com.exaltedzoro.aeternautils.block.entity;
 
 import com.exaltedzoro.aeternautils.AeternaUtils;
+import com.exaltedzoro.aeternautils.block.LunarSourcelinkBlock;
 import com.exaltedzoro.aeternautils.block.ModBlocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +19,14 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<SingularityJarBlockEntity>> SINGULARITY_JAR =
             BLOCK_ENTITIES.register("singularity_jar", () ->
                     BlockEntityType.Builder.of(SingularityJarBlockEntity::new, ModBlocks.SINGULARITY_JAR.get()).build(null));
+
+    public  static final RegistryObject<BlockEntityType<SolarSourcelinkBlockEntity>> SOLAR_SOURCELINK =
+            BLOCK_ENTITIES.register("solar_sourcelink", () ->
+                    BlockEntityType.Builder.of(SolarSourcelinkBlockEntity::new, ModBlocks.SOLAR_SOURCELINK.get()).build(null));
+
+    public  static final RegistryObject<BlockEntityType<LunarSourcelinkBlockEntity>> LUNAR_SOURCELINK =
+            BLOCK_ENTITIES.register("lunar_sourcelink", () ->
+                    BlockEntityType.Builder.of(LunarSourcelinkBlockEntity::new, ModBlocks.LUNAR_SOURCELINK.get()).build(null));
 
     public static void register (IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
