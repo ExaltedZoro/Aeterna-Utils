@@ -43,8 +43,8 @@ public class LunarSourcelinkBlockEntity extends BlockEntity {
                     nearbyLinks++;
                 }
             }
-            if(pEntity.source + (int) (16 / Math.pow(4, nearbyLinks)) < pEntity.max_source) {
-                pEntity.source += (int) (16 / Math.pow(4, nearbyLinks));
+            if(pEntity.source + (int) (8 / Math.pow(2, nearbyLinks)) < pEntity.max_source) {
+                pEntity.source += (int) (8 / Math.pow(2, nearbyLinks));
             } else {
                 pEntity.source = pEntity.max_source;
             }
