@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "GCG",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "ars_nouveau:source_gem"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "C": {
+      "item": "minecraft:sculk_catalyst"
+    }
+  },
+  "result": {
+    "item": "aeterna_utils:sculking_sourcelink"
+  }
+}
