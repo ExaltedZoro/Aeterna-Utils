@@ -11,10 +11,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
 
 public class SolarSourcelinkBlockEntity extends BlockEntity {
-
     private int source = 0;
     private final int max_source = 100;
-
 
     public SolarSourcelinkBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SOLAR_SOURCELINK.get(), pos, state);
