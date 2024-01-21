@@ -20,13 +20,17 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("singularity_jar", () ->
                     BlockEntityType.Builder.of(SingularityJarBlockEntity::new, ModBlocks.SINGULARITY_JAR.get()).build(null));
 
-    public  static final RegistryObject<BlockEntityType<SolarSourcelinkBlockEntity>> SOLAR_SOURCELINK =
+    public static final RegistryObject<BlockEntityType<SolarSourcelinkBlockEntity>> SOLAR_SOURCELINK =
             BLOCK_ENTITIES.register("solar_sourcelink", () ->
                     BlockEntityType.Builder.of(SolarSourcelinkBlockEntity::new, ModBlocks.SOLAR_SOURCELINK.get()).build(null));
 
-    public  static final RegistryObject<BlockEntityType<LunarSourcelinkBlockEntity>> LUNAR_SOURCELINK =
+    public static final RegistryObject<BlockEntityType<LunarSourcelinkBlockEntity>> LUNAR_SOURCELINK =
             BLOCK_ENTITIES.register("lunar_sourcelink", () ->
                     BlockEntityType.Builder.of(LunarSourcelinkBlockEntity::new, ModBlocks.LUNAR_SOURCELINK.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<SculkingSourcelinkBlockEntity>> SCULKING_SOURCELINK =
+            BLOCK_ENTITIES.register("sculking_sourcelink", () ->
+                    BlockEntityType.Builder.of(SculkingSourcelinkBlockEntity::new, ModBlocks.SCULKING_SOURCELINK.get()).build(null));
 
     public static void register (IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
