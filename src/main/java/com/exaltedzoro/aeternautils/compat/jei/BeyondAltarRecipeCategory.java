@@ -22,6 +22,7 @@ public class BeyondAltarRecipeCategory implements IRecipeCategory<BeyondAltarRec
 
     private final IDrawable icon;
     private final IDrawable background;
+    private final int[] yValues = {0, 20, 40, 60};
 
     public BeyondAltarRecipeCategory(IGuiHelper helper) {
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.BEYOND_ALTAR.get()));
@@ -50,15 +51,19 @@ public class BeyondAltarRecipeCategory implements IRecipeCategory<BeyondAltarRec
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, BeyondAltarRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 56, 22).addIngredients(recipe.getInput());
-        builder.addSlot(RecipeIngredientRole.INPUT, 0, 0).addIngredients(recipe.getPedestalItems().get(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 0, 20).addIngredients(recipe.getPedestalItems().get(1));
-        builder.addSlot(RecipeIngredientRole.INPUT, 0, 40).addIngredients(recipe.getPedestalItems().get(2));
-        builder.addSlot(RecipeIngredientRole.INPUT, 0, 60).addIngredients(recipe.getPedestalItems().get(3));
-        builder.addSlot(RecipeIngredientRole.INPUT, 112, 0).addIngredients(recipe.getPedestalItems().get(4));
-        builder.addSlot(RecipeIngredientRole.INPUT, 112, 20).addIngredients(recipe.getPedestalItems().get(5));
-        builder.addSlot(RecipeIngredientRole.INPUT, 112, 40).addIngredients(recipe.getPedestalItems().get(6));
-        builder.addSlot(RecipeIngredientRole.INPUT, 112, 60).addIngredients(recipe.getPedestalItems().get(7));
+        builder.addSlot(RecipeIngredientRole.INPUT, 56, 30).addIngredients(recipe.getInput());
+        for(int i = 0; i < 8; i++) {
+            int x;
+            int y;
+            if(i % 2 == 0) {
+                x = 0;
+                y = yValues[i];
+            } else {
+                x = 112;
+                y = yValues[i - 1];
+            }
+            builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(recipe.getPedestalItems().get(i));
+        }
         builder.addSlot(RecipeIngredientRole.OUTPUT, 56, 70).addItemStack(recipe.getResultItem());
     }
 
