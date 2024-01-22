@@ -35,7 +35,6 @@ public class SculkingSourcelinkBlock extends BaseEntityBlock {
         VoxelShape shape = Shapes.empty();
         shape = Shapes.join(shape, box(3, 0, 3, 13, 4, 13), BooleanOp.OR);
         shape = Shapes.join(shape, box(6, 4, 6, 10, 12, 10), BooleanOp.OR);
-        shape = Shapes.join(shape, box(7, 12, 7, 9, 16, 9), BooleanOp.OR);
 
         //Stubs
         shape = Shapes.join(shape, box(1, 0, 7, 3, 3, 9), BooleanOp.OR);
@@ -43,17 +42,33 @@ public class SculkingSourcelinkBlock extends BaseEntityBlock {
         shape = Shapes.join(shape, box(7, 0, 1, 9, 3, 3), BooleanOp.OR);
         shape = Shapes.join(shape, box(7, 0, 13, 9, 3, 15), BooleanOp.OR);
 
-        //Supports
-        shape = Shapes.join(shape, box(5, 9, 7, 6, 10, 9), BooleanOp.OR);
-        shape = Shapes.join(shape, box(10, 9, 7, 11, 10, 9), BooleanOp.OR);
-        shape = Shapes.join(shape, box(7, 9, 10, 9, 10, 11), BooleanOp.OR);
-        shape = Shapes.join(shape, box(7, 9, 5, 9, 10, 6), BooleanOp.OR);
+        //North petal
+        shape = Shapes.join(shape, box(7, 4, 4, 9, 9, 5), BooleanOp.OR);
+        shape = Shapes.join(shape, box(7, 9, 5, 9, 13, 6), BooleanOp.OR);
+        shape = Shapes.join(shape, box(7, 13, 4, 9, 15, 5), BooleanOp.OR);
+        shape = Shapes.join(shape, box(7, 15, 2, 9, 16, 4), BooleanOp.OR);
+        shape = Shapes.join(shape, box(7, 13, 1, 9, 15, 2), BooleanOp.OR);
 
-        //Top stubs
-        shape = Shapes.join(shape, box(7, 10, 4, 9, 14, 6), BooleanOp.OR);
-        shape = Shapes.join(shape, box(7, 10, 10, 9, 14, 12), BooleanOp.OR);
-        shape = Shapes.join(shape, box(10, 10, 7, 12, 14, 9), BooleanOp.OR);
-        shape = Shapes.join(shape, box(4, 10, 7, 6, 14, 9), BooleanOp.OR);
+        //South petal
+        shape = Shapes.join(shape, box(7, 4, 11, 9, 9, 12), BooleanOp.OR);
+        shape = Shapes.join(shape, box(7, 9, 10, 9, 13, 11), BooleanOp.OR);
+        shape = Shapes.join(shape, box(7, 13, 11, 9, 15, 12), BooleanOp.OR);
+        shape = Shapes.join(shape, box(7, 15, 12, 9, 16, 14), BooleanOp.OR);
+        shape = Shapes.join(shape, box(7, 13, 14, 9, 15, 15), BooleanOp.OR);
+
+        //East petal
+        shape = Shapes.join(shape, box(11, 4, 7, 12, 9, 9), BooleanOp.OR);
+        shape = Shapes.join(shape, box(10, 9, 7, 11, 13, 9), BooleanOp.OR);
+        shape = Shapes.join(shape, box(11, 13, 7, 12, 15, 9), BooleanOp.OR);
+        shape = Shapes.join(shape, box(12, 15, 7, 14, 16, 9), BooleanOp.OR);
+        shape = Shapes.join(shape, box(14, 13, 7, 15, 15, 9), BooleanOp.OR);
+
+        //West petal
+        shape = Shapes.join(shape, box(4, 4, 7, 5, 9, 9), BooleanOp.OR);
+        shape = Shapes.join(shape, box(5, 9, 7, 6, 13, 9), BooleanOp.OR);
+        shape = Shapes.join(shape, box(4, 13, 7, 5, 15, 9), BooleanOp.OR);
+        shape = Shapes.join(shape, box(2, 15, 7, 4, 16, 9), BooleanOp.OR);
+        shape = Shapes.join(shape, box(1, 13, 7, 2, 15, 9), BooleanOp.OR);
 
         return shape;
     }
