@@ -1,2 +1,5 @@
+1.0.1
+Fixed Beyond Altar JEI page
+
 1.0.0
 Initial release
