@@ -159,7 +159,7 @@ public class BeyondAltarBlockEntity extends BlockEntity {
                 if(recipe.isPresent()) {
                     if(recipe.get().doPedestalsMatch(getPedestalItems(level, blockPos, pEntity)) && SourceUtil.hasSourceNearby(blockPos, level, 5, recipe.get().getSourceCost())) {
                         SourceUtil.takeSourceWithParticles(blockPos, level, 5, recipe.get().getSourceCost());
-                        pEntity.itemHandler.extractItem(0, 1, false);
+                        pEntity.itemHandler.extractItem(0, recipe.get().getInputCount(), false);
                         level.addFreshEntity(new ItemEntity(level, blockPos.getX() + 0.5f, blockPos.getY() + 1, blockPos.getZ() + 0.5f, recipe.get().getResultItem()));
                         for(BlockPos pos : pEntity.pedestalOffsets) {
                             ((ItemPedestalBlockEntity) level.getBlockEntity(pos)).inventory.extractItem(0, 1, false);

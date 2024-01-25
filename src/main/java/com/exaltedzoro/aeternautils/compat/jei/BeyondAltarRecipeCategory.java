@@ -16,6 +16,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.List;
+
 public class BeyondAltarRecipeCategory implements IRecipeCategory<BeyondAltarRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(AeternaUtils.MOD_ID, "beyond_altar");
     public static final ResourceLocation TEXTURE = new ResourceLocation(AeternaUtils.MOD_ID, "textures/gui/beyond_altar_jei_background.png");
@@ -60,20 +62,7 @@ public class BeyondAltarRecipeCategory implements IRecipeCategory<BeyondAltarRec
                 break;
             }
         }
-
-        builder.addSlot(RecipeIngredientRole.INPUT, 56, 30).addIngredients(recipe.getInput());
-        /*for(int i = 0; i < 8; i++) {
-            int x;
-            int y;
-            if(i % 2 == 0) {
-                x = 0;
-                y = yValues[i];
-            } else {
-                x = 112;
-                y = yValues[i - 1];
-            }
-            builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(recipe.getPedestalItems().get(i));
-        }*/
+        builder.addSlot(RecipeIngredientRole.INPUT, 56, 30).addItemStack(new ItemStack(recipe.getInput().getItems()[0].getItem(), recipe.getInputCount()));
         builder.addSlot(RecipeIngredientRole.OUTPUT, 56, 70).addItemStack(recipe.getResultItem());
     }
 

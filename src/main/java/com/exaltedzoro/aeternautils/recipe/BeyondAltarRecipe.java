@@ -12,20 +12,24 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import team.lodestar.lodestone.systems.recipe.IngredientWithCount;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final ItemStack output;
     private final Ingredient input;
+    private final int inputCount;
     private final NonNullList<Ingredient> pedestalItems;
     private final int sourceCost;
 
-    public BeyondAltarRecipe(ResourceLocation id, ItemStack output, Ingredient input, NonNullList<Ingredient> pedestalItems, int sourceCost) {
+    public BeyondAltarRecipe(ResourceLocation id, ItemStack output, Ingredient input, int inputCount, NonNullList<Ingredient> pedestalItems, int sourceCost) {
         this.id = id;
         this.output = output;
         this.input = input;
+        this.inputCount = inputCount;
         this.pedestalItems = pedestalItems;
         this.sourceCost =  sourceCost;
     }
@@ -59,7 +63,7 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
 
         boolean matched;
         for (Ingredient pedestalItem : this.pedestalItems) {
-            if(pedestalItem == Ingredient.EMPTY) {
+            if(pedestalItem.isEmpty()) {
                 continue;
             }
 
@@ -104,6 +108,10 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
         return input;
     }
 
+    public int getInputCount() {
+        return inputCount;
+    }
+
     public int getSourceCost() {
         return sourceCost;
     }
@@ -146,6 +154,7 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
         public BeyondAltarRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
             Ingredient input = Ingredient.fromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "input"));
+            int inputCount = GsonHelper.getAsInt(pSerializedRecipe, "inputCount");
             JsonArray pedestals = GsonHelper.getAsJsonArray(pSerializedRecipe, "pedestalItems");
             NonNullList<Ingredient> pedestalItems = NonNullList.withSize(8, Ingredient.EMPTY);
 
@@ -155,13 +164,14 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
 
             int sourceCost = GsonHelper.getAsInt(pSerializedRecipe, "sourceCost");
 
-            return new BeyondAltarRecipe(pRecipeId, output, input, pedestalItems, sourceCost);
+            return new BeyondAltarRecipe(pRecipeId, output, input, inputCount, pedestalItems, sourceCost);
         }
 
         @Override
         public @Nullable BeyondAltarRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             ItemStack output = pBuffer.readItem();
             Ingredient input = Ingredient.fromNetwork(pBuffer);
+            int inputCount = pBuffer.readInt();
             NonNullList<Ingredient> pedestalItems = NonNullList.withSize(8, Ingredient.EMPTY);
 
             for (int i = 0; i < 8; i++) {
@@ -170,13 +180,14 @@ public class BeyondAltarRecipe implements Recipe<SimpleContainer> {
 
             int sourceCost = pBuffer.readInt();
 
-            return new BeyondAltarRecipe(pRecipeId, output, input, pedestalItems, sourceCost);
+            return new BeyondAltarRecipe(pRecipeId, output, input, inputCount, pedestalItems, sourceCost);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf pBuffer, BeyondAltarRecipe pRecipe) {
             pBuffer.writeItemStack(pRecipe.output, false);
             pRecipe.input.toNetwork(pBuffer);
+            pBuffer.writeInt(pRecipe.inputCount);
             for (Ingredient ing : pRecipe.pedestalItems) {
                 ing.toNetwork(pBuffer);
             }
