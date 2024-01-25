@@ -25,7 +25,7 @@ public class SculkingSourcelinkBlockEntity extends BlockEntity {
 
     public void activate(int experience) {
         level.playSound(null, worldPosition, SoundEvents.SCULK_BLOCK_PLACE, SoundSource.BLOCKS, 1, 1);
-        addSource(experience * 10);
+        addSource(experience * 50);
     }
 
     public void addSource(int source) {
