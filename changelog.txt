@@ -1,3 +1,7 @@
+1.0.2
+Buffed Source/XP from the Sculking Sourcelink from 10 to 50
+Beyond Altar recipes can now use more than 1 of an item as the input
+
 1.0.1
 Fixed Beyond Altar JEI page
 
