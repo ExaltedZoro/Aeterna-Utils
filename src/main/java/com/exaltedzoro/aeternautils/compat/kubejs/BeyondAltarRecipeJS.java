@@ -11,7 +11,8 @@ public interface BeyondAltarRecipeJS {
     RecipeKey<OutputItem> OUTPUT = ItemComponents.OUTPUT.key("output");
     RecipeKey<InputItem> INPUT = ItemComponents.INPUT.key("input");
     RecipeKey<InputItem[]> PEDESTAL_ITEMS = ItemComponents.INPUT_ARRAY.key("pedestalItems");
+    RecipeKey<Integer> INPUT_COUNT = NumberComponent.INT.key("inputCount");
     RecipeKey<Integer> SOURCE = NumberComponent.INT.key("sourceCost");
 
-    RecipeSchema SCHEMA = new RecipeSchema(OUTPUT, INPUT, PEDESTAL_ITEMS, SOURCE);
+    RecipeSchema SCHEMA = new RecipeSchema(OUTPUT, INPUT, INPUT_COUNT, PEDESTAL_ITEMS, SOURCE);
 }
