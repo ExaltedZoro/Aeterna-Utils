@@ -1,3 +1,9 @@
+1.0.3
+Fixed Beyond Altar not checking recipe input count
+Removed Beyond Altar test recipe for Raw Iron
+Added recipe for Beyond Altar
+Added recipes for Solar and Lunar Sourcelinks
+
 1.0.2
 Buffed Source/XP from the Sculking Sourcelink from 10 to 50
 Beyond Altar recipes can now use more than 1 of an item as the input
