@@ -157,7 +157,9 @@ public class BeyondAltarBlockEntity extends BlockEntity {
                 inventory.setItem(0, pEntity.itemHandler.getStackInSlot(0));
                 Optional<BeyondAltarRecipe> recipe = level.getRecipeManager().getRecipeFor(BeyondAltarRecipe.Type.INSTANCE, inventory, level);
                 if(recipe.isPresent()) {
-                    if(recipe.get().doPedestalsMatch(getPedestalItems(level, blockPos, pEntity)) && SourceUtil.hasSourceNearby(blockPos, level, 5, recipe.get().getSourceCost())) {
+                    if(recipe.get().doPedestalsMatch(getPedestalItems(level, blockPos, pEntity)) &&
+                            SourceUtil.hasSourceNearby(blockPos, level, 5, recipe.get().getSourceCost()) &&
+                            pEntity.getStack().getCount() >= recipe.get().getInputCount()) {
                         SourceUtil.takeSourceWithParticles(blockPos, level, 5, recipe.get().getSourceCost());
                         pEntity.itemHandler.extractItem(0, recipe.get().getInputCount(), false);
                         level.addFreshEntity(new ItemEntity(level, blockPos.getX() + 0.5f, blockPos.getY() + 1, blockPos.getZ() + 0.5f, recipe.get().getResultItem()));
