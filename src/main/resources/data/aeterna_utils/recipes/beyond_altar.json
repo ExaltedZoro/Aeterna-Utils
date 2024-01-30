@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C C",
+    "SSS",
+    " S "
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:candles"
+    },
+    "S": {
+      "item": "minecraft:stone_bricks"
+    }
+  },
+  "result": {
+    "item": "aeterna_utils:beyond_altar"
+  }
+}

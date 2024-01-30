@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "SFS",
+    " G "
+  ],
+  "key": {
+    "F": {
+      "tag": "minecraft:flowers"
+    },
+    "S": {
+      "item": "ars_nouveau:source_gem"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "aeterna_utils:lunar_sourcelink"
+  }
+}
