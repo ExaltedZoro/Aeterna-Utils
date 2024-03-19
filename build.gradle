@@ -6,7 +6,7 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-version = '1.0.3-1.19'
+version = '1.1.0-1.19'
 group = 'com.exaltedzoro.aeternautils' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'aeternautils'
 
@@ -181,6 +181,9 @@ dependencies {
     implementation fg.deobf("curse.maven:kubejs-238086:4931520")
     implementation fg.deobf("curse.maven:rhino-416294:4805925")
     implementation fg.deobf("curse.maven:architectury-api-419699:4555749")
+
+    implementation fg.deobf("curse.maven:gateways-to-eternity-417802:4677570")
+    implementation fg.deobf("curse.maven:placebo-283644:5086263")
 
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
