@@ -66,8 +66,11 @@ public class BeyondAltarBlockEntity extends BlockEntity {
         itemHandler.setStackInSlot(0, pStack);
     }
 
-    public boolean validateMultiblock(Level level, BlockPos altarPos) {
-        BlockPos pos = altarPos.below();
+    public boolean validateMultiblock() {
+        assert level != null;
+
+        BlockPos pos = worldPosition.below();
+
         return level.getBlockState(pos).getBlock() == com.hollingsworth.arsnouveau.setup.BlockRegistry.ARCANE_CORE_BLOCK &&
                 level.getBlockState(pos.north(1).east(0)).getBlock() == BlockRegistry.RUNEWOOD_PLANKS_STAIRS.get() &&
                 level.getBlockState(pos.north(1).east(1)).getBlock() == BlockRegistry.RUNEWOOD_PLANKS_STAIRS.get() &&
@@ -93,14 +96,14 @@ public class BeyondAltarBlockEntity extends BlockEntity {
                 level.getBlockState(pos.north(-1).east(-2)).getBlock() == BlockRegistry.RUNEWOOD_PLANKS.get() &&
                 level.getBlockState(pos.north(0).east(-2)).getBlock() == BlockRegistry.RUNEWOOD_PLANKS.get() &&
                 level.getBlockState(pos.north(1).east(-2)).getBlock() == BlockRegistry.RUNEWOOD_PLANKS.get() &&
-                level.getBlockState(altarPos.north(2).east(-2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
-                level.getBlockState(altarPos.north(2).east(0)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
-                level.getBlockState(altarPos.north(2).east(2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
-                level.getBlockState(altarPos.north(0).east(2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
-                level.getBlockState(altarPos.north(-2).east(2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
-                level.getBlockState(altarPos.north(-2).east(0)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
-                level.getBlockState(altarPos.north(-2).east(-2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
-                level.getBlockState(altarPos.north(0).east(-2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get();
+                level.getBlockState(worldPosition.north(2).east(-2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
+                level.getBlockState(worldPosition.north(2).east(0)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
+                level.getBlockState(worldPosition.north(2).east(2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
+                level.getBlockState(worldPosition.north(0).east(2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
+                level.getBlockState(worldPosition.north(-2).east(2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
+                level.getBlockState(worldPosition.north(-2).east(0)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
+                level.getBlockState(worldPosition.north(-2).east(-2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get() &&
+                level.getBlockState(worldPosition.north(0).east(-2)).getBlock() == BlockRegistry.RUNEWOOD_ITEM_PEDESTAL.get();
     }
 
     @Override
@@ -143,7 +146,7 @@ public class BeyondAltarBlockEntity extends BlockEntity {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
 
-        Containers.dropContents(this.level, this.worldPosition, inventory);
+        Containers.dropContents(level, worldPosition, inventory);
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, BeyondAltarBlockEntity pEntity) {
@@ -152,12 +155,12 @@ public class BeyondAltarBlockEntity extends BlockEntity {
         }
 
         if(level.getGameTime() % 20L == 0L) {
-            if(pEntity.validateMultiblock(level, blockPos)) {
+            if(pEntity.validateMultiblock()) {
                 SimpleContainer inventory = new SimpleContainer(1);
                 inventory.setItem(0, pEntity.itemHandler.getStackInSlot(0));
                 Optional<BeyondAltarRecipe> recipe = level.getRecipeManager().getRecipeFor(BeyondAltarRecipe.Type.INSTANCE, inventory, level);
                 if(recipe.isPresent()) {
-                    if(recipe.get().doPedestalsMatch(getPedestalItems(level, blockPos, pEntity)) &&
+                    if(recipe.get().doPedestalsMatch(getPedestalItems(level, pEntity)) &&
                             SourceUtil.hasSourceNearby(blockPos, level, 5, recipe.get().getSourceCost()) &&
                             pEntity.getStack().getCount() >= recipe.get().getInputCount()) {
                         SourceUtil.takeSourceWithParticles(blockPos, level, 5, recipe.get().getSourceCost());
@@ -174,7 +177,7 @@ public class BeyondAltarBlockEntity extends BlockEntity {
         }
     }
 
-    private static List<ItemStack> getPedestalItems(Level level, BlockPos pos, BeyondAltarBlockEntity entity) {
+    private static List<ItemStack> getPedestalItems(Level level, BeyondAltarBlockEntity entity) {
         NonNullList<ItemStack> stacks = NonNullList.withSize(8, ItemStack.EMPTY);
         for(int i = 0; i < entity.pedestalOffsets.size(); i++) {
             if(!((ItemPedestalBlockEntity) level.getBlockEntity(entity.pedestalOffsets.get(i))).inventory.getStackInSlot(0).isEmpty()) {
