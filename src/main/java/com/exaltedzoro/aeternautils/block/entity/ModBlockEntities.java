@@ -32,6 +32,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("sculking_sourcelink", () ->
                     BlockEntityType.Builder.of(SculkingSourcelinkBlockEntity::new, ModBlocks.SCULKING_SOURCELINK.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<GatewayAltarBlockEntity>> GATEWAY_ALTAR =
+            BLOCK_ENTITIES.register("gateway_altar", () ->
+                    BlockEntityType.Builder.of(GatewayAltarBlockEntity::new, ModBlocks.GATEWAY_ALTAR.get()).build(null));
+
     public static void register (IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }
