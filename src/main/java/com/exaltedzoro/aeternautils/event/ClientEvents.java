@@ -3,6 +3,7 @@ package com.exaltedzoro.aeternautils.event;
 import com.exaltedzoro.aeternautils.AeternaUtils;
 import com.exaltedzoro.aeternautils.block.entity.ModBlockEntities;
 import com.exaltedzoro.aeternautils.block.entity.renderer.BeyondAltarBlockEntityRenderer;
+import com.exaltedzoro.aeternautils.block.entity.renderer.GatewayAltarBlockEntityRenderer;
 import com.exaltedzoro.aeternautils.block.entity.renderer.SingularityJarBlockEntityRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -21,6 +22,7 @@ public class ClientEvents {
         public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ModBlockEntities.BEYOND_ALTAR.get(), BeyondAltarBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntities.SINGULARITY_JAR.get(), SingularityJarBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.GATEWAY_ALTAR.get(), GatewayAltarBlockEntityRenderer::new);
         }
     }
 }
