@@ -1,3 +1,8 @@
+1.1.0
+Fixed a bug with Malums rite effects not persisting between world loads
+Added Gateway Altar (used to automatically summon Gateways using a custom multiblock)
+Gateway bossbars no longer appear when summoned by a Gateway Altar
+
 1.0.3
 Fixed Beyond Altar not checking recipe input count
 Removed Beyond Altar test recipe for Raw Iron
