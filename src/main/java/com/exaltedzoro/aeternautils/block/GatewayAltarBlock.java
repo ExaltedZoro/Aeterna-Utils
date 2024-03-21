@@ -45,13 +45,13 @@ public class GatewayAltarBlock extends BaseEntityBlock {
         VoxelShape shape = Shapes.empty();
 
         //Base
-        shape = Shapes.join(shape, box(2, 0, 2, 14, 2, 14), BooleanOp.OR);
+        shape = Shapes.join(shape, box(3, 0, 3, 13, 2, 13), BooleanOp.OR);
 
         //Sides
-        shape = Shapes.join(shape, box(2, 2, 2, 14, 4, 3), BooleanOp.OR);
-        shape = Shapes.join(shape, box(2, 2, 13, 14, 4, 14), BooleanOp.OR);
-        shape = Shapes.join(shape, box(13, 2, 2, 14, 4, 14), BooleanOp.OR);
-        shape = Shapes.join(shape, box(2, 2, 2, 3, 4, 14), BooleanOp.OR);
+        shape = Shapes.join(shape, box(6, 0, 2, 10, 1, 3), BooleanOp.OR);
+        shape = Shapes.join(shape, box(6, 0, 13, 10, 1, 14), BooleanOp.OR);
+        shape = Shapes.join(shape, box(2, 0, 6, 3, 1, 10), BooleanOp.OR);
+        shape = Shapes.join(shape, box(13, 0, 6, 14, 1, 10), BooleanOp.OR);
 
         return shape;
     }
