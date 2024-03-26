@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DID",
+    "IAI",
+    "DID"
+  ],
+  "key": {
+    "D": {
+      "item": "forbidden_arcanus:darkstone"
+    },
+    "I": {
+      "item": "forbidden_arcanus:deorum_ingot"
+    },
+    "A": {
+      "item": "forbidden_arcanus:arcane_crystal_block"
+    }
+  },
+  "result": {
+    "item": "aeterna_utils:gateway_altar"
+  }
+}
