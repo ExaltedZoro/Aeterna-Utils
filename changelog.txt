@@ -1,5 +1,10 @@
+1.1.1
+Fixed a bug with Malums rite effects not persisting between world loads (for real this time)
+Added recipe for the Gateway Altar
+Lowered the height at which the Gateway Altar (should, but doesn't) render items
+
 1.1.0
-Fixed a bug with Malums rite effects not persisting between world loads
+Fixed a bug with Malums rite effects not persisting between world loads (actually no, this fix doesn't work)
 Added Gateway Altar (used to automatically summon Gateways using a custom multiblock)
 Gateway bossbars no longer appear when summoned by a Gateway Altar
 
