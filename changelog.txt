@@ -1,3 +1,7 @@
+1.1.2
+Added a background for the Beyond Altar JEI page
+Fixed the Gateway Altar not rendering items
+
 1.1.1
 Fixed a bug with Malums rite effects not persisting between world loads (for real this time)
 Added recipe for the Gateway Altar
