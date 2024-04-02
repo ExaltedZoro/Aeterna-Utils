@@ -1,6 +1,7 @@
 package com.exaltedzoro.aeternautils.networking.packet;
 
 import com.exaltedzoro.aeternautils.block.entity.BeyondAltarBlockEntity;
+import com.exaltedzoro.aeternautils.block.entity.GatewayAltarBlockEntity;
 import com.exaltedzoro.aeternautils.block.entity.SingularityJarBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -50,6 +51,8 @@ public class SyncItemStackToClientPacket {
                 blockEntity.setHandler(this.itemStackHandler);
             } else if(Minecraft.getInstance().level.getBlockEntity(blockPos) instanceof SingularityJarBlockEntity blockEntity) {
                 blockEntity.setItemHandler(this.itemStackHandler);
+            } else if (Minecraft.getInstance().level.getBlockEntity(blockPos) instanceof GatewayAltarBlockEntity blockEntity) {
+                blockEntity.setHandler(this.itemStackHandler);
             }
         });
 

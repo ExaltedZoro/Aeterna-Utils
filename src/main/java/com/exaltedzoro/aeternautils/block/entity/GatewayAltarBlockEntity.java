@@ -138,4 +138,10 @@ public class GatewayAltarBlockEntity extends BlockEntity {
             }
         }
     }
+
+    public void setHandler(ItemStackHandler itemStackHandler) {
+        for(int i = 0; i < itemHandler.getSlots(); i++) {
+            itemHandler.setStackInSlot(i, itemStackHandler.getStackInSlot(i));
+        }
+    }
 }
