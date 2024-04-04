@@ -1,3 +1,6 @@
+1.1.3
+Beyond Altar now requires stone tools or above, not iron
+
 1.1.2
 Added a background for the Beyond Altar JEI page
 Fixed the Gateway Altar not rendering items
