@@ -36,6 +36,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("gateway_altar", () ->
                     BlockEntityType.Builder.of(GatewayAltarBlockEntity::new, ModBlocks.GATEWAY_ALTAR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<MetallurgicCatalystBlockEntity>> METALLURGIC_CATALYST =
+            BLOCK_ENTITIES.register("metallurgic_catalyst", () ->
+                    BlockEntityType.Builder.of(MetallurgicCatalystBlockEntity::new, ModBlocks.METALLURGIC_CATALYST.get()).build(null));
+
     public static void register (IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

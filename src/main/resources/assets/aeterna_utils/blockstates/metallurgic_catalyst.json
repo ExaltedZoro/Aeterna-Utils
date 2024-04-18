@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": {"model": "aeterna_utils:block/metallurgic_catalyst"},
+    "facing=east": {"model": "aeterna_utils:block/metallurgic_catalyst", "y": 90},
+    "facing=south": {"model": "aeterna_utils:block/metallurgic_catalyst", "y": 180},
+    "facing=west": {"model": "aeterna_utils:block/metallurgic_catalyst", "y": 270}
+  }
+}

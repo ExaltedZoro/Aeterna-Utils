@@ -28,6 +28,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> LUNAR_SOURCELINK = registerBlock("lunar_sourcelink", () -> new LunarSourcelinkBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2, 1)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SCULKING_SOURCELINK = registerBlock("sculking_sourcelink", () -> new SculkingSourcelinkBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2, 1)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> GATEWAY_ALTAR = registerBlock("gateway_altar", () -> new GatewayAltarBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2, 1).requiresCorrectToolForDrops()), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> METALLURGIC_CATALYST = registerBlock("metallurgic_catalyst", () -> new MetallurgicCatalystBlock(BlockBehaviour.Properties.of(Material.STONE).strength(2, 1).requiresCorrectToolForDrops()), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

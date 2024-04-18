@@ -3,6 +3,7 @@
   "values": [
     "aeterna_utils:beyond_altar",
     "aeterna_utils:singularity_jar",
-    "aeterna_utils:gateway_altar"
+    "aeterna_utils:gateway_altar",
+    "aeterna_utils:metallurgic_catalyst"
   ]
 }

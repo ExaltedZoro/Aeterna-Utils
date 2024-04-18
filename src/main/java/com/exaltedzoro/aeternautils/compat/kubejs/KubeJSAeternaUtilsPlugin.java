@@ -11,6 +11,8 @@ public class KubeJSAeternaUtilsPlugin extends KubeJSPlugin {
     @Override
     public void registerRecipeSchemas(RegisterRecipeSchemasEvent event) {
         event.register(ModRecipes.BEYOND_ALTAR_SERIALIZER.getId(), BeyondAltarRecipeJS.SCHEMA);
+        event.register(ModRecipes.METALLURGIC_CATALYST_SERIALIZER.getId(), MetallurgicCatalystRecipeJS.SCHEMA);
+        event.register(ModRecipes.METALLURGIC_FUEL_SERIALIZER.getId(), MetallurgicFuelRecipeJS.SCHEMA);
     }
 
     @Override
