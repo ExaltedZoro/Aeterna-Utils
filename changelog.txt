@@ -1,3 +1,6 @@
+1.2.0
+Added Metallurgic Catalyst and everything associated with it (recipe type, JEI and KJS integration etc.)
+
 1.1.4
 Added drop table for Gateway Altars
 Gateway Altars and Sourcelinks no longer instabreak
